@@ -81,6 +81,6 @@ extension TodoViewController: UITableViewDelegate, UITableViewDataSource {
             // 선택된 셀의 할 일 삭제 및 테이블뷰 갱신
             todos.remove(at: indexPath.row)
             TodoTable.deleteRows(at: [indexPath], with: .fade)
-        }   //
+        }
     }
 }
