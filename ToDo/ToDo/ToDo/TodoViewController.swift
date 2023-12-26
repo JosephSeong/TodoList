@@ -9,12 +9,6 @@ import UIKit
 
 class TodoViewController: UIViewController {
 
-    // 할 일 데이터 모델 정의
-    struct Todo {
-        var title: String
-        var isCompleted: Bool
-    }
-
     // 할 일 리스트 배열
     var todos = [Todo]()
 
@@ -60,7 +54,6 @@ class TodoViewController: UIViewController {
 
     @IBAction func todoComplete(_ sender: Any) {
     }
-
 }
 
 // 테이블뷰 델리게이트 및 데이터 소스 구현
@@ -88,6 +81,6 @@ extension TodoViewController: UITableViewDelegate, UITableViewDataSource {
             // 선택된 셀의 할 일 삭제 및 테이블뷰 갱신
             todos.remove(at: indexPath.row)
             TodoTable.deleteRows(at: [indexPath], with: .fade)
-        }
+        }   //
     }
 }

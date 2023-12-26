@@ -51,7 +51,7 @@
                                                         <segment title="완료"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="todoComplete:" destination="Woy-se-9mt" eventType="valueChanged" id="GTg-b1-2fb"/>
+                                                        <action selector="todoComplete:" destination="Woy-se-9mt" eventType="valueChanged" id="D1F-V1-9KG"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
