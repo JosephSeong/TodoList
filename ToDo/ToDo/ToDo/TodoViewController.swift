@@ -34,11 +34,14 @@ class TodoViewController: UIViewController {
         let save = UIAlertAction(title: "추가", style: .default) { (save) in
             // 입력된 텍스트로 새로운 할 일 생성
             guard let newTitle = textField.text, !newTitle.isEmpty else { return }
-            let newTodo = Todo(id: 1, title: newTitle, isCompleted: false)
+            let newTodo = Todo(id: self.todos.count, title: newTitle, isCompleted: false)
 
             // 생성한 할 일을 배열에 추가하고 테이블뷰 갱신
             self.todos.append(newTodo)
             self.TodoTable.reloadData()
+
+            // UserDefaults에 저장
+            self.saveTodo()
         }
 
         alert.addTextField { (text) in
@@ -52,6 +55,13 @@ class TodoViewController: UIViewController {
 
         // 알림창 표시
         present(alert, animated: true, completion: nil)
+    }
+
+    func saveTodo() {
+        let encoder = JSONEncoder()
+        if let encodedData = try? encoder.encode(todos) {
+            UserDefaults.standard.set(encodedData, forKey: "todos")
+        }
     }
 }
 
