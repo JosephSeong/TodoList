@@ -21,8 +21,19 @@ class TodoViewController: UIViewController {
         TodoTable.delegate = self
         TodoTable.dataSource = self
 
-        //self.tableView?.reloadData()
+        // UserDefaults에서 Todos 불러오기
+        loadTodo()
+        TodoTable.reloadData()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // UserDefaults에서 Todos 불러오기 (업데이트가 있을 경우)
+        loadTodo()
+        TodoTable.reloadData()
+    }
+
 
     @IBAction func addButton(_ sender: Any) {
         var textField = UITextField()
@@ -34,11 +45,14 @@ class TodoViewController: UIViewController {
         let save = UIAlertAction(title: "추가", style: .default) { (save) in
             // 입력된 텍스트로 새로운 할 일 생성
             guard let newTitle = textField.text, !newTitle.isEmpty else { return }
-            let newTodo = Todo(id: 1, title: newTitle, isCompleted: false)
+            let newTodo = Todo(id: self.todos.count, title: newTitle, isCompleted: false)
 
             // 생성한 할 일을 배열에 추가하고 테이블뷰 갱신
             self.todos.append(newTodo)
             self.TodoTable.reloadData()
+
+            // UserDefaults에 저장
+            self.saveTodo()
         }
 
         alert.addTextField { (text) in
@@ -52,6 +66,22 @@ class TodoViewController: UIViewController {
 
         // 알림창 표시
         present(alert, animated: true, completion: nil)
+    }
+
+    // Todos를 UserDefaults에 저장하는 함수
+    func saveTodo() {
+        let encoder = JSONEncoder()
+        if let encodedData = try? encoder.encode(todos) {
+            UserDefaults.standard.set(encodedData, forKey: "todos")
+        }
+    }
+
+    // UserDefaults에서 Todos를 불러오는 함수
+    func loadTodo() {
+        if let savedData = UserDefaults.standard.data(forKey: "todos"),
+           let loadedTodos = try? JSONDecoder().decode([Todo].self, from: savedData) {
+            todos = loadedTodos
+        }
     }
 }
 

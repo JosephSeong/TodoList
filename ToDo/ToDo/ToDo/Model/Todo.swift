@@ -8,7 +8,7 @@
 import Foundation
 
 // 할 일 데이터 모델 정의
-struct Todo {
+struct Todo: Codable {
     var id: Int
     var title: String
     var isCompleted: Bool
