@@ -36,7 +36,7 @@ class TodoViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
 
     }
 
@@ -90,6 +90,44 @@ class TodoViewController: UIViewController {
         }
     }
 
+    // 셀을 탭하면 수정할 수 있는 알림창 표시
+    @objc func cellTapped(_ sender: UITapGestureRecognizer) {
+        if let cell = sender.view as? TodoTableViewCell,
+           let indexPath = TodoTable.indexPath(for: cell) {
+            let todoToUpdate = todos[indexPath.row]
+
+            var textField = UITextField()
+
+            let alert = UIAlertController(title: "할 일 수정하기", message: "", preferredStyle: .alert)
+
+            let cancel = UIAlertAction(title: "취소", style: .default) { (cancel) in }
+
+            let save = UIAlertAction(title: "수정", style: .default) { (save) in
+                // 입력된 텍스트로 할 일 수정
+                guard let updatedTitle = textField.text, !updatedTitle.isEmpty else { return }
+
+                // 수정된 할 일을 배열에 업데이트하고 테이블뷰 갱신
+                self.todos[indexPath.row].title = updatedTitle
+                self.TodoTable.reloadRows(at: [indexPath], with: .fade)
+
+                // UserDefaults에 저장
+                self.saveTodo()
+            }
+
+            alert.addTextField { (text) in
+                textField = text
+                textField.text = todoToUpdate.title
+            }
+
+            // 액션 추가
+            alert.addAction(cancel)
+            alert.addAction(save)
+
+            // 알림창 표시
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
 }
 
 // 테이블뷰 델리게이트 및 데이터 소스 구현
@@ -104,9 +142,10 @@ extension TodoViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Todocell", for: indexPath) as! TodoTableViewCell
         cell.setTask(todos[indexPath.row])
 
-        // 해당 인덱스에 해당하는 할 일 데이터로 셀 설정
-//        let todo = todos[indexPath.row]
-//        cell.textLabel?.text = todo.title
+        // 추가: 셀을 탭하면 수정할 수 있는 알림창 표시
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:)))
+        cell.addGestureRecognizer(tapGesture)
+
 
         return cell
     }
