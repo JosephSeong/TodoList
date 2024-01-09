@@ -17,6 +17,7 @@ class TodoTableViewCell: UITableViewCell {
     // 왼료하면 밑줄
     @IBAction func switchChanged(_ sender: Any) {
         guard let todo else { return }
+
         if doneSwitch.isOn {
             textLabel?.text = nil
             textLabel?.attributedText = todo.title.strikeThrough()

@@ -34,6 +34,12 @@ class TodoViewController: UIViewController {
         TodoTable.reloadData()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+
+    }
+
 
     @IBAction func addButton(_ sender: Any) {
         var textField = UITextField()
@@ -83,6 +89,7 @@ class TodoViewController: UIViewController {
             todos = loadedTodos
         }
     }
+
 }
 
 // 테이블뷰 델리게이트 및 데이터 소스 구현
@@ -110,6 +117,9 @@ extension TodoViewController: UITableViewDelegate, UITableViewDataSource {
             // 선택된 셀의 할 일 삭제 및 테이블뷰 갱신
             todos.remove(at: indexPath.row)
             TodoTable.deleteRows(at: [indexPath], with: .fade)
+
+            // UserDefaults에서 삭제
+            saveTodo()
         }
     }
 }
