@@ -16,6 +16,7 @@ class TodoTableViewCell: UITableViewCell {
 
     // 왼료하면 밑줄
     @IBAction func switchChanged(_ sender: Any) {
+        // todo 객체가 존재하는지 확인
         guard let todo else { return }
 
         if doneSwitch.isOn {

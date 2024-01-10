@@ -12,4 +12,5 @@ struct Todo: Codable {
     var id: Int
     var title: String
     var isCompleted: Bool
+    var category: String
 }
