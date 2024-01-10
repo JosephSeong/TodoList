@@ -74,13 +74,25 @@ class TodoViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    // Todos를 UserDefaults에 저장하는 함수
+//    // Todos를 UserDefaults에 저장하는 함수
+//    func saveTodo() {
+//        let encoder = JSONEncoder()
+//        if let encodedData = try? encoder.encode(todos) {
+//            UserDefaults.standard.set(encodedData, forKey: "todos")
+//        }
+//    }
+
+    // Todos를 UserDefaults에 저장하는 함수 (에러처리)
     func saveTodo() {
         let encoder = JSONEncoder()
-        if let encodedData = try? encoder.encode(todos) {
+        do {
+            let encodedData = try encoder.encode(todos)
             UserDefaults.standard.set(encodedData, forKey: "todos")
+        } catch {
+            print("todos를 저장하는 중 오류 발생: \(error)")
         }
     }
+
 
     // UserDefaults에서 Todos를 불러오는 함수
     func loadTodo() {
@@ -159,6 +171,10 @@ extension TodoViewController: UITableViewDelegate, UITableViewDataSource {
 
             // UserDefaults에서 삭제
             saveTodo()
+
+            // 디버깅
+            print("\(indexPath.row)번 인덱스의 작업이 삭제")
+            print("업데이트된 todos 배열: \(todos)")
         }
     }
 }
