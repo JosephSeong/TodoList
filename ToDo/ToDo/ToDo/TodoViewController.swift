@@ -10,7 +10,7 @@ import UIKit
 class TodoViewController: UIViewController {
 
     //var todos: [Todo] = []
-    var categoryWithTasks: [CategoryWithTasks] = []
+    var categoryWithTasks: [CategoryWithTask] = []
 
     @IBOutlet weak var TodoTable: UITableView!
 
@@ -55,7 +55,7 @@ class TodoViewController: UIViewController {
                 } else {
                     // 새로운 카테고리를 만들고 할 일을 추가
                     let newTodo = Todo(id: 0, title: newTitle, isCompleted: false)
-                    let newCategoryWithTasks = CategoryWithTasks(category: category, tasks: [newTodo])
+                    let newCategoryWithTasks = CategoryWithTask(category: category, tasks: [newTodo])
                     self.categoryWithTasks.append(newCategoryWithTasks)
                 }
 
@@ -91,7 +91,7 @@ class TodoViewController: UIViewController {
     func loadTodo() {
         if let savedData = UserDefaults.standard.data(forKey: "todos"),
            // 가져온 데이터를 CategoryWithTasks 객체의 배열로 디코딩(실패하면 nil)
-           let loadedCategoryWithTasks = try? JSONDecoder().decode([CategoryWithTasks].self, from: savedData) {
+           let loadedCategoryWithTasks = try? JSONDecoder().decode([CategoryWithTask].self, from: savedData) {
             // 디코딩된 할 일 목록을 현재의 categoryWithTasks 배열에 할당
             categoryWithTasks = loadedCategoryWithTasks
         }
