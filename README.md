@@ -14,3 +14,6 @@
 
 ## Delete (삭제)
 - 테이블뷰에서 셀을 삭제할 때마다 데이터가 일관되게 유지된다.
+
+<img width="250" alt="스크린샷 2024-01-12 오후 6 36 03" src="https://github.com/JosephSeong/TodoList/assets/48307813/87ee80eb-1d45-4814-8b6c-e6eeac9f135c">
+<img width="250" alt="스크린샷 2024-01-12 오후 6 36 38" src="https://github.com/JosephSeong/TodoList/assets/48307813/fd2edf7e-10e2-46a1-b87d-1a0dc019155d">
