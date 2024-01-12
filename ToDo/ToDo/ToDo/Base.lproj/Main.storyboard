@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3LI-KH-dwk">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -39,21 +40,11 @@
                                     <constraint firstAttribute="width" constant="240" id="Kgs-Zc-pvQ"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjV-ip-3oe">
-                                <rect key="frame" x="138" y="444" width="117.33333333333331" height="34.333333333333314"/>
-                                <color key="tintColor" red="0.79723192920389863" green="0.25992028408373852" blue="0.20125487430355934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="할 일 확인">
-                                    <backgroundConfiguration key="background" strokeWidth="0.29999999999999999" strokeOutset="3">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="strokeColor" red="0.79723192919999997" green="0.25992028410000001" blue="0.2012548743" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </backgroundConfiguration>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="Woy-se-9mt" kind="show" id="POH-Lb-wut"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bnt-sE-uUX">
-                                <rect key="frame" x="150" y="508" width="88" height="35"/>
+                                <rect key="frame" x="114" y="508" width="150" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="ron-mB-X3C"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemIndigoColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="완료한 일">
@@ -64,6 +55,23 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="u4m-va-gDI" kind="show" id="QUu-2Z-c1o"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjV-ip-3oe">
+                                <rect key="frame" x="114" y="440" width="150" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34.329999999999998" id="4UH-il-IH6"/>
+                                    <constraint firstAttribute="width" constant="170" id="dVI-Bz-Kpx"/>
+                                </constraints>
+                                <color key="tintColor" red="0.79723192920389863" green="0.25992028408373852" blue="0.20125487430355934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="할 일 확인">
+                                    <backgroundConfiguration key="background" strokeWidth="0.29999999999999999" strokeOutset="3">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="strokeColor" red="0.79723192919999997" green="0.25992028410000001" blue="0.2012548743" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="Woy-se-9mt" kind="show" id="POH-Lb-wut"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -103,7 +111,7 @@
             </objects>
             <point key="canvasLocation" x="1195" y="-27"/>
         </scene>
-        <!--Todo View Controller-->
+        <!--할 일-->
         <scene sceneID="AEj-au-Rvp">
             <objects>
                 <viewController id="Woy-se-9mt" customClass="TodoViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
@@ -141,22 +149,19 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tml-j4-JZ9">
                                 <rect key="frame" x="0.0" y="48" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <items>
-                                    <navigationItem title="할 일" id="RwF-pK-XId">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dvs-i4-hQ7">
-                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="addButton:" destination="Woy-se-9mt" id="Goq-gg-vVf"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
                             </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xi1-C4-7vU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" title="할 일" id="RwF-pK-XId">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dvs-i4-hQ7">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButton:" destination="Woy-se-9mt" id="Goq-gg-vVf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="TodoTable" destination="7uP-Pw-oA2" id="9PV-Qi-qnw"/>
                     </connections>
@@ -169,9 +174,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

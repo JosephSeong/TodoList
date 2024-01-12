@@ -148,7 +148,7 @@ extension TodoViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    // MARK: - 수정
+    // MARK: - 할 일 수정
     // 테이블뷰 셀 선택 시
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 선택된 셀의 할 일을 가져옴
@@ -185,4 +185,37 @@ extension TodoViewController: UITableViewDelegate, UITableViewDataSource {
         // 선택 상태 취소
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
+
+    // MARK: - 카테고리 수정
+    // 섹션 헤더 탭 시 카테고리 수정
+//    func tableView(_ tableView: UITableView, didSelectHeaderInSection section: Int) {
+//        let currentCategory = categoryWithTasks[section].category
+//
+//        var categoryTextField = UITextField()
+//
+//        let categoryAlert = UIAlertController(title: "카테고리 수정", message: "새로운 카테고리 이름을 입력하세요.", preferredStyle: .alert)
+//        categoryAlert.addTextField { (textField) in
+//            categoryTextField = textField
+//            categoryTextField.placeholder = "새로운 카테고리"
+//            categoryTextField.text = currentCategory
+//        }
+//        let categorySave = UIAlertAction(title: "확인", style: .default) { (action) in
+//            guard let newCategory = categoryTextField.text, !newCategory.isEmpty else { return }
+//
+//            // 카테고리 이름 업데이트 및 테이블 뷰 리로드
+//            self.categoryWithTasks[section].category = newCategory
+//            self.TodoTable.reloadSections(IndexSet(integer: section), with: .automatic)
+//
+//            // 업데이트된 카테고리를 UserDefaults에 저장
+//            self.saveTodo()
+//        }
+//        categoryAlert.addAction(categorySave)
+//
+//        present(categoryAlert, animated: true, completion: nil)
+//
+//        // 헤더 터치 시 선택 상태 취소
+//        tableView.deselectRow(at: IndexPath(row: 0, section: section), animated: true)
+//    }
 }
+
