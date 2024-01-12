@@ -103,7 +103,7 @@
             </objects>
             <point key="canvasLocation" x="1195" y="-27"/>
         </scene>
-        <!--Todo View Controller-->
+        <!--할 일-->
         <scene sceneID="AEj-au-Rvp">
             <objects>
                 <viewController id="Woy-se-9mt" customClass="TodoViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
@@ -141,22 +141,19 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tml-j4-JZ9">
                                 <rect key="frame" x="0.0" y="48" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <items>
-                                    <navigationItem title="할 일" id="RwF-pK-XId">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dvs-i4-hQ7">
-                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="addButton:" destination="Woy-se-9mt" id="Goq-gg-vVf"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
                             </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xi1-C4-7vU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" title="할 일" id="RwF-pK-XId">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dvs-i4-hQ7">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButton:" destination="Woy-se-9mt" id="Goq-gg-vVf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="TodoTable" destination="7uP-Pw-oA2" id="9PV-Qi-qnw"/>
                     </connections>
@@ -169,9 +166,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
