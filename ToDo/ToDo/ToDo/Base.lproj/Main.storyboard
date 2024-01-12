@@ -40,10 +40,14 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjV-ip-3oe">
-                                <rect key="frame" x="150" y="439" width="92" height="35"/>
+                                <rect key="frame" x="138" y="444" width="117.33333333333331" height="34.333333333333314"/>
                                 <color key="tintColor" red="0.79723192920389863" green="0.25992028408373852" blue="0.20125487430355934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="할 일 확인"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="할 일 확인">
+                                    <backgroundConfiguration key="background" strokeWidth="0.29999999999999999" strokeOutset="3">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="strokeColor" red="0.79723192919999997" green="0.25992028410000001" blue="0.2012548743" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="Woy-se-9mt" kind="show" id="POH-Lb-wut"/>
                                 </connections>
@@ -52,7 +56,15 @@
                                 <rect key="frame" x="150" y="508" width="88" height="35"/>
                                 <color key="tintColor" systemColor="systemIndigoColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="완료한 일"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="완료한 일">
+                                    <backgroundConfiguration key="background" strokeWidth="0.29999999999999999" strokeOutset="3">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="strokeColor" systemColor="systemIndigoColor"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="u4m-va-gDI" kind="show" id="QUu-2Z-c1o"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="U6y-Au-qP0"/>
@@ -74,6 +86,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIT-cl-Ko6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="414.50381679389312" y="-27.464788732394368"/>
+        </scene>
+        <!--Complete View Controller-->
+        <scene sceneID="yKp-dm-9eu">
+            <objects>
+                <viewController id="u4m-va-gDI" customClass="CompleteViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="csf-Mf-fJj">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="y6c-Ok-KJ8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BXX-HR-4w4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KgO-vW-Igm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1195" y="-27"/>
         </scene>
         <!--Todo View Controller-->
         <scene sceneID="AEj-au-Rvp">
@@ -129,14 +157,13 @@
                         <viewLayoutGuide key="safeArea" id="xi1-C4-7vU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0xS-bT-BPk"/>
                     <connections>
                         <outlet property="TodoTable" destination="7uP-Pw-oA2" id="9PV-Qi-qnw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAK-dL-KAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195" y="-27"/>
+            <point key="canvasLocation" x="1195" y="-680"/>
         </scene>
     </scenes>
     <resources>
