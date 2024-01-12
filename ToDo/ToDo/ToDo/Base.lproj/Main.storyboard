@@ -54,7 +54,7 @@
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="u4m-va-gDI" kind="show" id="QUu-2Z-c1o"/>
+                                    <segue destination="O78-AG-3Zn" kind="show" id="kzl-4F-qbt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjV-ip-3oe">
@@ -95,21 +95,37 @@
             </objects>
             <point key="canvasLocation" x="414.50381679389312" y="-27.464788732394368"/>
         </scene>
-        <!--Complete View Controller-->
-        <scene sceneID="yKp-dm-9eu">
+        <!--랜덤 고양이-->
+        <scene sceneID="rKc-7w-eC5">
             <objects>
-                <viewController id="u4m-va-gDI" customClass="CompleteViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="csf-Mf-fJj">
+                <viewController id="O78-AG-3Zn" customClass="RandomViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AXU-0z-r3C">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="y6c-Ok-KJ8"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l4b-JJ-dW4">
+                                <rect key="frame" x="46.666666666666657" y="310.66666666666669" width="300" height="300.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="PI6-hB-WUc"/>
+                                    <constraint firstAttribute="height" constant="300" id="nIg-NX-l7G"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AjW-bF-iE7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l4b-JJ-dW4" firstAttribute="centerX" secondItem="AjW-bF-iE7" secondAttribute="centerX" id="3s5-mV-71K"/>
+                            <constraint firstItem="l4b-JJ-dW4" firstAttribute="centerY" secondItem="AjW-bF-iE7" secondAttribute="centerY" id="vaC-5i-CnP"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="BXX-HR-4w4"/>
+                    <navigationItem key="navigationItem" title="랜덤 고양이" id="Vqt-pw-ecH"/>
+                    <connections>
+                        <outlet property="imageView" destination="l4b-JJ-dW4" id="4Ng-AA-RRv"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KgO-vW-Igm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="af3-Lq-ZWz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195" y="-27"/>
+            <point key="canvasLocation" x="1195" y="350"/>
         </scene>
         <!--할 일-->
         <scene sceneID="AEj-au-Rvp">
@@ -168,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAK-dL-KAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195" y="-680"/>
+            <point key="canvasLocation" x="1195" y="-304"/>
         </scene>
     </scenes>
     <resources>
