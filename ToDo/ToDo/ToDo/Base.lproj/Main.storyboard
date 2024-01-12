@@ -47,7 +47,7 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="systemIndigoColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="완료한 일">
+                                <buttonConfiguration key="configuration" style="tinted" title="랜덤 사진">
                                     <backgroundConfiguration key="background" strokeWidth="0.29999999999999999" strokeOutset="3">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="strokeColor" systemColor="systemIndigoColor"/>
@@ -127,7 +127,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Todocell" id="x5z-Ex-Xyy" customClass="TodoTableViewCell" customModule="ToDo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="44.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5z-Ex-Xyy" id="jUh-C3-EOw">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5z-Ex-Xyy" id="jUh-C3-EOw" customClass="TodoTableViewCell" customModule="ToDo" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>

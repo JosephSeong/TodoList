@@ -79,13 +79,23 @@ class TodoViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    // UserDefaults에 Todos 저장
+//    // UserDefaults에 Todos 저장
+//    func saveTodo() {
+//        let encoder = JSONEncoder()
+//        if let encodedData = try? encoder.encode(categoryWithTasks) {
+//            UserDefaults.standard.set(encodedData, forKey: "todos")
+//        }
+//    }
     func saveTodo() {
         let encoder = JSONEncoder()
         if let encodedData = try? encoder.encode(categoryWithTasks) {
             UserDefaults.standard.set(encodedData, forKey: "todos")
+            print("userdefaults에 데이터 저장")
+        } else {
+            print("저장 실패")
         }
     }
+
 
     // UserDefaults에서 Todos 불러오기
     func loadTodo() {
@@ -121,6 +131,7 @@ extension TodoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Todocell", for: indexPath) as! TodoTableViewCell
         let task = categoryWithTasks[indexPath.section].tasks[indexPath.row]
+        cell.todoViewController = self // TodoViewController에 대한 참조 설정
         cell.setTask(task)
 
         return cell
