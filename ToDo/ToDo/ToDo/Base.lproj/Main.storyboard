@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3LI-KH-dwk">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -39,21 +40,11 @@
                                     <constraint firstAttribute="width" constant="240" id="Kgs-Zc-pvQ"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjV-ip-3oe">
-                                <rect key="frame" x="138" y="444" width="117.33333333333331" height="34.333333333333314"/>
-                                <color key="tintColor" red="0.79723192920389863" green="0.25992028408373852" blue="0.20125487430355934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="할 일 확인">
-                                    <backgroundConfiguration key="background" strokeWidth="0.29999999999999999" strokeOutset="3">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="strokeColor" red="0.79723192919999997" green="0.25992028410000001" blue="0.2012548743" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </backgroundConfiguration>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="Woy-se-9mt" kind="show" id="POH-Lb-wut"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bnt-sE-uUX">
-                                <rect key="frame" x="150" y="508" width="88" height="35"/>
+                                <rect key="frame" x="114" y="508" width="150" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="ron-mB-X3C"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemIndigoColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="완료한 일">
@@ -64,6 +55,23 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="u4m-va-gDI" kind="show" id="QUu-2Z-c1o"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjV-ip-3oe">
+                                <rect key="frame" x="114" y="440" width="150" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34.329999999999998" id="4UH-il-IH6"/>
+                                    <constraint firstAttribute="width" constant="170" id="dVI-Bz-Kpx"/>
+                                </constraints>
+                                <color key="tintColor" red="0.79723192920389863" green="0.25992028408373852" blue="0.20125487430355934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="할 일 확인">
+                                    <backgroundConfiguration key="background" strokeWidth="0.29999999999999999" strokeOutset="3">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="strokeColor" red="0.79723192919999997" green="0.25992028410000001" blue="0.2012548743" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="Woy-se-9mt" kind="show" id="POH-Lb-wut"/>
                                 </connections>
                             </button>
                         </subviews>
