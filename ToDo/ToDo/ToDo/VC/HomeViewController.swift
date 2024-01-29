@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeViewController: UIViewController {
 
@@ -29,5 +30,40 @@ class HomeViewController: UIViewController {
             }
         })
         task.resume()
+
+
+
+
+        // 버튼 생성 및 설정
+        let profileBtn = UIButton(type: .system)
+        profileBtn.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
+
+        let symbolName = "person.crop.square"
+        let buttonImage = UIImage(systemName: symbolName)
+        profileBtn.setImage(buttonImage, for: .normal)
+
+        // 아이콘
+        profileBtn.tintColor = UIColor.systemIndigo
+        profileBtn.imageView?.snp.makeConstraints { make in
+            make.width.equalTo(45)
+            make.height.equalTo(35)
+        }
+
+        // 버튼 레이아웃 설정
+        profileBtn.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profileBtn)
+
+        view.addSubview(profileBtn)
+        profileBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-240)
+        }
     }
+
+    @objc func goToProfile() {
+        let profileVC = ProfileDesignViewController()
+        self.navigationController?.pushViewController(profileVC, animated:true)
+    }
+
+
 }

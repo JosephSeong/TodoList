@@ -79,13 +79,7 @@ class TodoViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-//    // UserDefaults에 Todos 저장
-//    func saveTodo() {
-//        let encoder = JSONEncoder()
-//        if let encodedData = try? encoder.encode(categoryWithTasks) {
-//            UserDefaults.standard.set(encodedData, forKey: "todos")
-//        }
-//    }
+    // UserDefaults에 Todos 저장
     func saveTodo() {
         let encoder = JSONEncoder()
         if let encodedData = try? encoder.encode(categoryWithTasks) {
