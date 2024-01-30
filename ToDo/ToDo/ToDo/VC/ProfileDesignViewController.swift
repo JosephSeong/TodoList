@@ -82,7 +82,7 @@ class ProfileDesignViewController: UIViewController {
 
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "르탄이"
+        label.text = "seong"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16.5, weight: .semibold)
         return label
@@ -103,6 +103,37 @@ class ProfileDesignViewController: UIViewController {
         label.textColor = .systemBlue
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
         return label
+    }()
+
+    private let followBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("팔로우", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.8)
+        button.layer.cornerRadius = 5
+        return button
+    }()
+
+    private let messageBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("메세지", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.systemGray.cgColor
+        button.layer.cornerRadius = 5
+        return button
+    }()
+
+    private let moreBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.tintColor = .black
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.systemGray.cgColor
+        button.layer.cornerRadius = 5
+        return button
     }()
 
     override func viewDidLoad() {
@@ -127,6 +158,9 @@ class ProfileDesignViewController: UIViewController {
         view.addSubview(nameLabel)
         view.addSubview(explaneLabel)
         view.addSubview(linkLabel)
+        view.addSubview(followBtn)
+        view.addSubview(messageBtn)
+        view.addSubview(moreBtn)
     }
 
     private func setupConstraints() {
@@ -146,14 +180,10 @@ class ProfileDesignViewController: UIViewController {
             make.width.height.equalTo(88)
         }
 
+        //
         postNum.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(40)
             make.leading.equalTo(profileImage.snp.trailing).offset(65)
-        }
-
-        postLabel.snp.makeConstraints { make in
-            make.top.equalTo(postNum.snp.bottom).offset(4)
-            make.leading.equalTo(profileImage.snp.trailing).offset(50)
         }
 
         followerNum.snp.makeConstraints { make in
@@ -161,21 +191,31 @@ class ProfileDesignViewController: UIViewController {
             make.leading.equalTo(postNum.snp.trailing).offset(65)
         }
 
-        followerLabel.snp.makeConstraints { make in
-            make.top.equalTo(postNum.snp.bottom).offset(4)
-            make.leading.equalTo(postLabel.snp.trailing).offset(30)
-        }
-
         followingNum.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(40)
             make.leading.equalTo(followerNum.snp.trailing).offset(65)
         }
 
+        //
+        postLabel.snp.makeConstraints { make in
+            make.top.equalTo(postNum.snp.bottom).offset(4)
+            make.leading.equalTo(profileImage.snp.trailing).offset(50)
+            //make.trailing.equalTo(followerLabel.snp.leading).offset(-30)
+        }
+
+        followerLabel.snp.makeConstraints { make in
+            make.top.equalTo(postNum.snp.bottom).offset(4)
+            make.leading.equalTo(postLabel.snp.trailing).offset(30)
+            //make.trailing.equalTo(followingLabel.snp.leading).offset(-30)
+        }
+
         followingLabel.snp.makeConstraints { make in
             make.top.equalTo(postNum.snp.bottom).offset(4)
             make.leading.equalTo(followerLabel.snp.trailing).offset(30)
+            //make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
         }
 
+        //
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(profileImage.snp.bottom).offset(15)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
@@ -189,6 +229,25 @@ class ProfileDesignViewController: UIViewController {
         linkLabel.snp.makeConstraints { make in
             make.top.equalTo(explaneLabel.snp.bottom).offset(4)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
+        }
+
+        //
+        followBtn.snp.makeConstraints { make in
+            make.top.equalTo(linkLabel.snp.bottom).offset(15)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
+
+        }
+
+        messageBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(followBtn.snp.centerY)
+            make.leading.equalTo(followBtn.snp.trailing).offset(8)
+        }
+
+        moreBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(followBtn.snp.centerY)
+            make.leading.equalTo(messageBtn.snp.trailing).offset(8)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
+            make.width.height.equalTo(30)
         }
     }
 
