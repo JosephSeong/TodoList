@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProfileDesignViewController: UIViewController {
+class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -136,6 +136,38 @@ class ProfileDesignViewController: UIViewController {
         return button
     }()
 
+    private let dividerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.systemGray
+        return view
+    }()
+
+    private let gridBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "squareshape.split.3x3"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
+    }()
+
+    private let profileBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "person.fill"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+
+    private let cellIdentifier = "PhotoCell"
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -143,6 +175,18 @@ class ProfileDesignViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellIdentifier)
+
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let spacing: CGFloat = 2
+            let itemSize = (view.bounds.width - 2 * spacing) / 3
+            layout.itemSize = CGSize(width: itemSize, height: itemSize)
+            layout.minimumLineSpacing = spacing
+            layout.minimumInteritemSpacing = spacing
+        }
     }
 
     private func setupUI() {
@@ -161,6 +205,10 @@ class ProfileDesignViewController: UIViewController {
         view.addSubview(followBtn)
         view.addSubview(messageBtn)
         view.addSubview(moreBtn)
+        view.addSubview(dividerView)
+        view.addSubview(gridBtn)
+        view.addSubview(collectionView)
+        view.addSubview(profileBtn)
     }
 
     private func setupConstraints() {
@@ -235,12 +283,12 @@ class ProfileDesignViewController: UIViewController {
         followBtn.snp.makeConstraints { make in
             make.top.equalTo(linkLabel.snp.bottom).offset(15)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
-
         }
 
         messageBtn.snp.makeConstraints { make in
             make.centerY.equalTo(followBtn.snp.centerY)
             make.leading.equalTo(followBtn.snp.trailing).offset(8)
+            make.width.equalTo(150)
         }
 
         moreBtn.snp.makeConstraints { make in
@@ -249,6 +297,42 @@ class ProfileDesignViewController: UIViewController {
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.width.height.equalTo(30)
         }
+
+        //
+        dividerView.snp.makeConstraints { make in
+            make.top.equalTo(followBtn.snp.bottom).offset(15)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(0.2)
+        }
+
+        gridBtn.snp.makeConstraints { make in
+            make.top.equalTo(dividerView.snp.bottom).offset(15)
+            make.width.equalTo(view.snp.width).dividedBy(3) // 3등분
+        }
+
+        //
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(gridBtn.snp.bottom).offset(15)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(profileBtn.snp.top).offset(-15)
+        }
+
+        profileBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-40)
+        }
+    }
+
+    // MARK: - UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 9
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoCell
+
+        cell.imageView.image = UIImage(named: "picture")
+        return cell
     }
 
     @objc private func menuTap() {
