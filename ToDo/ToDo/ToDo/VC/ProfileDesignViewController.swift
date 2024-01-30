@@ -50,6 +50,13 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
         return label
     }()
 
+    private lazy var postStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [postNum, postLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        return stackView
+    }()
+
     private let followerNum: UILabel = {
         let label = UILabel()
         label.text = "0"
@@ -65,6 +72,13 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
         return label
     }()
 
+    private lazy var followerStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [followerNum, followerLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        return stackView
+    }()
+
     private let followingNum: UILabel = {
         let label = UILabel()
         label.text = "0"
@@ -78,6 +92,20 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
         label.text = "팔로잉"
         label.textAlignment = .center
         return label
+    }()
+
+    private lazy var followingStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [followingNum, followingLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        return stackView
+    }()
+
+    private lazy var infoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [postStackView, followerStackView, followingStackView])
+        stackView.axis = .horizontal
+        stackView.spacing = 40
+        return stackView
     }()
 
     private let nameLabel: UILabel = {
@@ -193,12 +221,19 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
         view.addSubview(titleLabel)
         view.addSubview(menuBtn)
         view.addSubview(profileImage)
-        view.addSubview(postNum)
-        view.addSubview(postLabel)
-        view.addSubview(followerNum)
-        view.addSubview(followerLabel)
-        view.addSubview(followingNum)
-        view.addSubview(followingLabel)
+//        view.addSubview(postNum)
+//        view.addSubview(postLabel)
+        view.addSubview(postStackView)
+//        view.addSubview(followerNum)
+//        view.addSubview(followerLabel)
+        view.addSubview(followerStackView)
+//        view.addSubview(followingNum)
+//        view.addSubview(followingLabel)
+        view.addSubview(followingStackView)
+
+        view.addSubview(infoStackView)
+
+
         view.addSubview(nameLabel)
         view.addSubview(explaneLabel)
         view.addSubview(linkLabel)
@@ -229,39 +264,25 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
         }
 
         //
-        postNum.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-            make.leading.equalTo(profileImage.snp.trailing).offset(65)
-        }
-
-        followerNum.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-            make.leading.equalTo(postNum.snp.trailing).offset(65)
-        }
-
-        followingNum.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-            make.leading.equalTo(followerNum.snp.trailing).offset(65)
-        }
-
-        //
-        postLabel.snp.makeConstraints { make in
-            make.top.equalTo(postNum.snp.bottom).offset(4)
-            make.leading.equalTo(profileImage.snp.trailing).offset(50)
-            //make.trailing.equalTo(followerLabel.snp.leading).offset(-30)
-        }
-
-        followerLabel.snp.makeConstraints { make in
-            make.top.equalTo(postNum.snp.bottom).offset(4)
-            make.leading.equalTo(postLabel.snp.trailing).offset(30)
-            //make.trailing.equalTo(followingLabel.snp.leading).offset(-30)
-        }
-
-        followingLabel.snp.makeConstraints { make in
-            make.top.equalTo(postNum.snp.bottom).offset(4)
-            make.leading.equalTo(followerLabel.snp.trailing).offset(30)
-            //make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
-        }
+//        postStackView.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+//            make.leading.equalTo(profileImage.snp.trailing).offset(50)
+//        }
+//
+//        followerStackView.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+//            make.leading.equalTo(postStackView.snp.trailing).offset(30)
+//        }
+//
+//        followingStackView.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+//            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
+//        }
+        infoStackView.snp.makeConstraints { make in
+               make.top.equalTo(titleLabel.snp.bottom).offset(40)
+               //make.leading.equalTo(profileImage.snp.trailing).offset(65)
+               make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
+           }
 
         //
         nameLabel.snp.makeConstraints { make in
