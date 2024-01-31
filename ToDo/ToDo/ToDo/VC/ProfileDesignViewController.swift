@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProfileDesignViewController: UIViewController {
+class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -50,6 +50,13 @@ class ProfileDesignViewController: UIViewController {
         return label
     }()
 
+    private lazy var postStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [postNum, postLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        return stackView
+    }()
+
     private let followerNum: UILabel = {
         let label = UILabel()
         label.text = "0"
@@ -65,6 +72,13 @@ class ProfileDesignViewController: UIViewController {
         return label
     }()
 
+    private lazy var followerStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [followerNum, followerLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        return stackView
+    }()
+
     private let followingNum: UILabel = {
         let label = UILabel()
         label.text = "0"
@@ -78,6 +92,20 @@ class ProfileDesignViewController: UIViewController {
         label.text = "팔로잉"
         label.textAlignment = .center
         return label
+    }()
+
+    private lazy var followingStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [followingNum, followingLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        return stackView
+    }()
+
+    private lazy var infoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [postStackView, followerStackView, followingStackView])
+        stackView.axis = .horizontal
+        stackView.spacing = 40
+        return stackView
     }()
 
     private let nameLabel: UILabel = {
@@ -136,6 +164,38 @@ class ProfileDesignViewController: UIViewController {
         return button
     }()
 
+    private let dividerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.systemGray
+        return view
+    }()
+
+    private let gridBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "squareshape.split.3x3"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
+    }()
+
+    private let profileBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "person.fill"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+
+    private let cellIdentifier = "PhotoCell"
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -143,34 +203,54 @@ class ProfileDesignViewController: UIViewController {
 
         setupUI()
         setupConstraints()
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellIdentifier)
+
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let spacing: CGFloat = 2
+            let itemSize = (view.bounds.width - 2 * spacing) / 3
+            layout.itemSize = CGSize(width: itemSize, height: itemSize)
+            layout.minimumLineSpacing = spacing
+            layout.minimumInteritemSpacing = spacing
+        }
     }
 
     private func setupUI() {
         view.addSubview(titleLabel)
         view.addSubview(menuBtn)
         view.addSubview(profileImage)
-        view.addSubview(postNum)
-        view.addSubview(postLabel)
-        view.addSubview(followerNum)
-        view.addSubview(followerLabel)
-        view.addSubview(followingNum)
-        view.addSubview(followingLabel)
+//        view.addSubview(postNum)
+//        view.addSubview(postLabel)
+        view.addSubview(postStackView)
+//        view.addSubview(followerNum)
+//        view.addSubview(followerLabel)
+        view.addSubview(followerStackView)
+//        view.addSubview(followingNum)
+//        view.addSubview(followingLabel)
+        view.addSubview(followingStackView)
+        view.addSubview(infoStackView)
         view.addSubview(nameLabel)
         view.addSubview(explaneLabel)
         view.addSubview(linkLabel)
         view.addSubview(followBtn)
         view.addSubview(messageBtn)
         view.addSubview(moreBtn)
+        view.addSubview(dividerView)
+        view.addSubview(gridBtn)
+        view.addSubview(collectionView)
+        view.addSubview(profileBtn)
     }
 
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(15)
         }
 
         menuBtn.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(15)
             make.trailing.equalToSuperview().offset(-10)
         }
 
@@ -180,39 +260,9 @@ class ProfileDesignViewController: UIViewController {
             make.width.height.equalTo(88)
         }
 
-        //
-        postNum.snp.makeConstraints { make in
+        infoStackView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(40)
-            make.leading.equalTo(profileImage.snp.trailing).offset(65)
-        }
-
-        followerNum.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-            make.leading.equalTo(postNum.snp.trailing).offset(65)
-        }
-
-        followingNum.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-            make.leading.equalTo(followerNum.snp.trailing).offset(65)
-        }
-
-        //
-        postLabel.snp.makeConstraints { make in
-            make.top.equalTo(postNum.snp.bottom).offset(4)
-            make.leading.equalTo(profileImage.snp.trailing).offset(50)
-            //make.trailing.equalTo(followerLabel.snp.leading).offset(-30)
-        }
-
-        followerLabel.snp.makeConstraints { make in
-            make.top.equalTo(postNum.snp.bottom).offset(4)
-            make.leading.equalTo(postLabel.snp.trailing).offset(30)
-            //make.trailing.equalTo(followingLabel.snp.leading).offset(-30)
-        }
-
-        followingLabel.snp.makeConstraints { make in
-            make.top.equalTo(postNum.snp.bottom).offset(4)
-            make.leading.equalTo(followerLabel.snp.trailing).offset(30)
-            //make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
         }
 
         //
@@ -235,12 +285,12 @@ class ProfileDesignViewController: UIViewController {
         followBtn.snp.makeConstraints { make in
             make.top.equalTo(linkLabel.snp.bottom).offset(15)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
-
         }
 
         messageBtn.snp.makeConstraints { make in
             make.centerY.equalTo(followBtn.snp.centerY)
             make.leading.equalTo(followBtn.snp.trailing).offset(8)
+            make.width.equalTo(150)
         }
 
         moreBtn.snp.makeConstraints { make in
@@ -249,10 +299,54 @@ class ProfileDesignViewController: UIViewController {
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.width.height.equalTo(30)
         }
+
+        //
+        dividerView.snp.makeConstraints { make in
+            make.top.equalTo(followBtn.snp.bottom).offset(15)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(0.2)
+        }
+
+        gridBtn.snp.makeConstraints { make in
+            make.top.equalTo(dividerView.snp.bottom).offset(15)
+            make.width.equalTo(view.snp.width).dividedBy(3) // 3등분
+        }
+
+        //
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(gridBtn.snp.bottom).offset(15)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(profileBtn.snp.top).offset(-15)
+        }
+
+        profileBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-40)
+        }
+    }
+
+    // MARK: - UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 9
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoCell
+
+        cell.imageView.image = UIImage(named: "picture")
+        return cell
     }
 
     @objc private func menuTap() {
         print("메뉴 버튼 탭")
+    }
+
+    @objc private func profileBtnTapped() {
+        let profileViewController = ProfileViewController() // ProfileViewController의 인스턴스 생성
+        // 다양한 설정이 필요하다면 여기에서 설정 가능
+        navigationController?.pushViewController(profileViewController, animated: true) // Navigation Controller를 사용하는 경우
+        // 또는
+        // present(profileViewController, animated: true, completion: nil) // 모달 형태로 화면 전환
     }
 }
 
