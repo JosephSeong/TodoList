@@ -10,6 +10,27 @@ import SnapKit
 
 class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = UIColor.white
+
+        setupUI()
+        setupConstraints()
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellIdentifier)
+
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let spacing: CGFloat = 2
+            let itemSize = (view.bounds.width - 2 * spacing) / 3
+            layout.itemSize = CGSize(width: itemSize, height: itemSize)
+            layout.minimumLineSpacing = spacing
+            layout.minimumInteritemSpacing = spacing
+        }
+    }
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "프로필"
@@ -24,7 +45,6 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
         let menuSymbol = UIImage(systemName: "line.horizontal.3", withConfiguration: symbolConfiguration)
         button.setImage(menuSymbol, for: .normal)
         button.tintColor = UIColor.black
-        button.addTarget(self, action: #selector(menuTap), for: .touchUpInside)
         return button
     }()
 
@@ -190,32 +210,11 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "person.fill"), for: .normal)
         button.tintColor = .black
+        button.addTarget(self, action: #selector(profileBtnTap), for: .touchUpInside)
         return button
     }()
 
     private let cellIdentifier = "PhotoCell"
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.backgroundColor = UIColor.white
-
-        setupUI()
-        setupConstraints()
-
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: cellIdentifier)
-
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let spacing: CGFloat = 2
-            let itemSize = (view.bounds.width - 2 * spacing) / 3
-            layout.itemSize = CGSize(width: itemSize, height: itemSize)
-            layout.minimumLineSpacing = spacing
-            layout.minimumInteritemSpacing = spacing
-        }
-    }
 
     private func setupUI() {
         view.addSubview(titleLabel)
@@ -337,16 +336,10 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
         return cell
     }
 
-    @objc private func menuTap() {
-        print("메뉴 버튼 탭")
-    }
-
-    @objc private func profileBtnTapped() {
-        let profileViewController = ProfileViewController() // ProfileViewController의 인스턴스 생성
-        // 다양한 설정이 필요하다면 여기에서 설정 가능
-        navigationController?.pushViewController(profileViewController, animated: true) // Navigation Controller를 사용하는 경우
-        // 또는
-        // present(profileViewController, animated: true, completion: nil) // 모달 형태로 화면 전환
+    @objc private func profileBtnTap() {
+        let profileVC = ProfileViewController()
+        self.present(profileVC, animated: true, completion: nil)
+        //navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
 
