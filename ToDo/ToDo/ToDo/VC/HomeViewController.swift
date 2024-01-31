@@ -61,9 +61,8 @@ class HomeViewController: UIViewController {
     }
 
     @objc func goToProfile() {
-        let profileVC = ProfileDesignViewController()
-        self.navigationController?.pushViewController(profileVC, animated:true)
+        let profileDesignVC = ProfileDesignViewController()
+        //self.navigationController?.pushViewController(profileVC, animated:true)
+        self.present(profileDesignVC, animated: true, completion: nil)
     }
-
-
 }

@@ -230,10 +230,7 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
 //        view.addSubview(followingNum)
 //        view.addSubview(followingLabel)
         view.addSubview(followingStackView)
-
         view.addSubview(infoStackView)
-
-
         view.addSubview(nameLabel)
         view.addSubview(explaneLabel)
         view.addSubview(linkLabel)
@@ -249,11 +246,11 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(15)
         }
 
         menuBtn.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(15)
             make.trailing.equalToSuperview().offset(-10)
         }
 
@@ -263,26 +260,10 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
             make.width.height.equalTo(88)
         }
 
-        //
-//        postStackView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-//            make.leading.equalTo(profileImage.snp.trailing).offset(50)
-//        }
-//
-//        followerStackView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-//            make.leading.equalTo(postStackView.snp.trailing).offset(30)
-//        }
-//
-//        followingStackView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-//            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
-//        }
         infoStackView.snp.makeConstraints { make in
-               make.top.equalTo(titleLabel.snp.bottom).offset(40)
-               //make.leading.equalTo(profileImage.snp.trailing).offset(65)
-               make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
-           }
+            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-28)
+        }
 
         //
         nameLabel.snp.makeConstraints { make in
@@ -358,6 +339,14 @@ class ProfileDesignViewController: UIViewController, UICollectionViewDelegate, U
 
     @objc private func menuTap() {
         print("메뉴 버튼 탭")
+    }
+
+    @objc private func profileBtnTapped() {
+        let profileViewController = ProfileViewController() // ProfileViewController의 인스턴스 생성
+        // 다양한 설정이 필요하다면 여기에서 설정 가능
+        navigationController?.pushViewController(profileViewController, animated: true) // Navigation Controller를 사용하는 경우
+        // 또는
+        // present(profileViewController, animated: true, completion: nil) // 모달 형태로 화면 전환
     }
 }
 
