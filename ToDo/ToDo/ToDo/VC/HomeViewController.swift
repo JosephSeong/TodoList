@@ -31,24 +31,6 @@ class HomeViewController: UIViewController {
         })
         task.resume()
 
-
-
-
-        // 버튼 생성 및 설정
-        let profileBtn = UIButton(type: .system)
-        profileBtn.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
-
-        let symbolName = "person.crop.square"
-        let buttonImage = UIImage(systemName: symbolName)
-        profileBtn.setImage(buttonImage, for: .normal)
-
-        // 아이콘
-        profileBtn.tintColor = UIColor.systemIndigo
-        profileBtn.imageView?.snp.makeConstraints { make in
-            make.width.equalTo(45)
-            make.height.equalTo(35)
-        }
-
         // 버튼 레이아웃 설정
         profileBtn.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileBtn)
@@ -57,10 +39,24 @@ class HomeViewController: UIViewController {
         profileBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-240)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(110)
+            make.height.equalTo(38)
         }
     }
 
-    @objc func goToProfile() {
+    private let profileBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("프로필", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.systemGray.cgColor
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(profileBtnTap), for: .touchUpInside)
+        return button
+    }()
+
+    @objc func profileBtnTap() {
         let profileDesignVC = ProfileDesignViewController()
         //self.navigationController?.pushViewController(profileVC, animated:true)
         self.present(profileDesignVC, animated: true, completion: nil)

@@ -15,6 +15,8 @@
 		7C0525D42B6747F80009563A /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 7C0525D32B6747F80009563A /* SnapKit-Dynamic */; };
 		7C0525D62B68E44E0009563A /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0525D52B68E44E0009563A /* PhotoCell.swift */; };
 		7C0525D82B69DD850009563A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0525D72B69DD850009563A /* ProfileViewController.swift */; };
+		7C0525DA2B69E5490009563A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0525D92B69E5490009563A /* UserProfile.swift */; };
+		7C0525DD2B69E5AD0009563A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0525DC2B69E5AD0009563A /* ProfileViewModel.swift */; };
 		7C43265F2B3292140056F322 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C43265E2B3292140056F322 /* AppDelegate.swift */; };
 		7C4326612B3292140056F322 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4326602B3292140056F322 /* SceneDelegate.swift */; };
 		7C4326662B3292140056F322 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C4326642B3292140056F322 /* Main.storyboard */; };
@@ -33,6 +35,8 @@
 		7C0525CE2B6747A90009563A /* ProfileDesignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDesignViewController.swift; sourceTree = "<group>"; };
 		7C0525D52B68E44E0009563A /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		7C0525D72B69DD850009563A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7C0525D92B69E5490009563A /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		7C0525DC2B69E5AD0009563A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		7C43265B2B3292140056F322 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C43265E2B3292140056F322 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C4326602B3292140056F322 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,14 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		7C0525DB2B69E57A0009563A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7C0525DC2B69E5AD0009563A /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7C4326522B3292140056F322 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +104,7 @@
 			children = (
 				7C4326742B35292E0056F322 /* Model */,
 				7C5BE3142B47F52500E8FE9D /* Cell */,
+				7C0525DB2B69E57A0009563A /* ViewModel */,
 				7C029B7B2B50D6B600825229 /* VC */,
 				7C5BE3152B47F52F00E8FE9D /* Extension */,
 				7C43265E2B3292140056F322 /* AppDelegate.swift */,
@@ -109,6 +122,7 @@
 			children = (
 				7C4326752B3529520056F322 /* Todo.swift */,
 				7C029B7E2B51315C00825229 /* Cat.swift */,
+				7C0525D92B69E5490009563A /* UserProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -214,12 +228,14 @@
 				7C029B7D2B512D6800825229 /* RandomViewController.swift in Sources */,
 				7C0525CF2B6747A90009563A /* ProfileDesignViewController.swift in Sources */,
 				7C43265F2B3292140056F322 /* AppDelegate.swift in Sources */,
+				7C0525DD2B69E5AD0009563A /* ProfileViewModel.swift in Sources */,
 				7C0525D82B69DD850009563A /* ProfileViewController.swift in Sources */,
 				7C029B7F2B51315C00825229 /* Cat.swift in Sources */,
 				7C4326612B3292140056F322 /* SceneDelegate.swift in Sources */,
 				7C029B782B50C04C00825229 /* HomeViewController.swift in Sources */,
 				7C0525D62B68E44E0009563A /* PhotoCell.swift in Sources */,
 				7C4326762B3529520056F322 /* Todo.swift in Sources */,
+				7C0525DA2B69E5490009563A /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
