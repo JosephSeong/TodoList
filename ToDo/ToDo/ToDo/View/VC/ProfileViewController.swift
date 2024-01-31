@@ -10,10 +10,8 @@ import SnapKit
 
 class ProfileViewController: UIViewController {
 
-    // MARK: - Properties
     private let viewModel = ProfileViewModel()
 
-    // MARK: - UI Components
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -24,11 +22,10 @@ class ProfileViewController: UIViewController {
     private let ageLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         return label
     }()
 
-    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -36,7 +33,6 @@ class ProfileViewController: UIViewController {
         fetchUserProfile()
     }
 
-    // MARK: - UI Setup
     private func setupUI() {
         view.addSubview(nameLabel)
         view.addSubview(ageLabel)
@@ -52,14 +48,12 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    // MARK: - Data Fetching
     private func fetchUserProfile() {
         viewModel.fetchUserProfile {
             self.updateUI()
         }
     }
 
-    // MARK: - Update UI
     private func updateUI() {
         nameLabel.text = "이름: \(viewModel.userName)"
         ageLabel.text = "나이: \(viewModel.userAge)"
